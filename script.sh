@@ -1,7 +1,7 @@
 git config --global user.email "sachinuppar129@gmail.com"
 git config --global user.name "Sidd"
 export latest_tag="1.0.1"
-sudo yq -i ".landscapes[0].grafana.targetRevision=env(latest_tag)" ./argocd/values.yml
+sudo yq -i ".landscapes[0].grafana.targetRevision=1.0.1" ./argocd/values.yml
 if git diff --quiet; then
   echo "targetRevision was not changed"
 else
