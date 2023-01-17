@@ -1,0 +1,21 @@
+name: update_targetrevision
+
+on:
+  schedule:
+    # The "*" (#42, asterisk) character has special semantics in YAML, so this
+    # string has to be quoted.
+    - cron: '*/5 * * * *'
+
+jobs:
+  build:
+    name: update_targetrevision
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: update_targetrevision
+        run: bash ./script.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOG_LEVEL: 'debug'
