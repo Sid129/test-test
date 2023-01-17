@@ -1,0 +1,84 @@
+landscapes:
+  - name: hec98
+    provider: aws
+    description: 'hec98 Landscape'
+    cluster:
+      name: hec98
+      targetNamespace: monitoring
+    nginxIngress:
+      targetNamespace: ingress
+      targetRevision: 4.2.5
+      valueFiles:
+        - values/hec98/ingress-nginx/values.yaml
+    blackboxExporter:
+      targetNamespace: monitoring
+      targetRevision: 5.0.3
+      valueFiles:
+        - values/hec98/blackbox-exporter/values.yaml
+    grafana:
+      targetNamespace: monitoring
+      targetRevision: 6.48.0
+      valueFiles:
+        - values/hec98/grafana/values.yaml
+        # - values/hec98/grafana/datasources.yaml
+        # - values/hec98/grafana/dashboards.yaml
+    storageclasses:
+      targetNamespace: default
+      valueFiles:
+        - ../../values/hec98/storageclasses/values.yaml
+    ticExporterSecrets:
+      targetNamespace: monitoring
+      targetRevision: 0.1.0
+      valueFiles:
+        - values/hec98/tic-exporter-secrets/values.yaml
+    corednsCustom:
+      targetNamespace: kube-system
+      targetRevision: 0.1.0
+      valueFiles:
+        - values/hec98/coredns-custom/values.yaml
+    victoriaMetricsCluster:
+      targetNamespace: monitoring
+      targetRevision: 0.9.38
+      valueFiles:
+        - values/hec98/victoria-metrics-cluster/values.yaml
+    victoriaMetricsAgent:
+      targetNamespace: monitoring
+      targetRevision: 0.8.19
+      valueFiles:
+        - values/hec98/victoria-metrics-agent/values.yaml
+    victoriaMetricsAlert:
+      - name: vmalert
+        targetNamespace: monitoring
+        targetRevision: 0.5.2
+        valueFiles:
+          - values/hec98/victoria-metrics-alert/values.yaml
+    enterpriseLogs:
+      targetNamespace: logging
+      targetRevision: 3.3.4
+      valueFiles:
+        - values/hec98/grafana-enterprise-logs/values.yaml
+    promtail:
+      targetNamespace: logging
+      targetRevision: 6.8.0
+      valueFiles:
+        - values/hec98/promtail/values.yaml
+    kubeStateMetrics:
+      targetNamespace: monitoring
+      targetRevision: 4.22.3
+      valueFiles:
+        - values/hec98/kube-state-metrics/values.yaml
+    externalSecretsOperator:
+      targetNamespace: external-secrets-mon
+      targetRevision: 0.5.6
+      valueFiles:
+        - values/hec98/external-secrets-operator/values.yaml
+    actionsRunner:
+      targetNamespace: github-actions
+      targetRevision: 0.20.2
+      valueFiles:
+        - values/hec98/actions-runner/values.yaml
+    certManager:
+      targetNamespace: cert-manager
+      targetRevision: v1.8.2
+      valueFiles:
+        - values/hec98/cert-manager/values.yaml
